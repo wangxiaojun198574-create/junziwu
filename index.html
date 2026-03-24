@@ -3,228 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>君子屋 Minshuku | 隐于市，寓于禅 - 专业民宿官网</title>
+    <title>君子屋 Minshuku | 隐于市，寓于禅</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         :root {
-            --primary-brown: #8c7355;
-            --accent-gold: #d4a373;
-            --text-dark: #2c3e50;
-            --light-bg: #f9f7f2;
+            --primary: #8c7355;
+            --accent: #d4a373;
+            --dark: #2c3e50;
+            --light: #f9f7f2;
             --white: #ffffff;
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Serif SC', "Hiragino Sans GB", serif; background: var(--light-bg); color: var(--text-dark); line-height: 1.6; }
+        body { font-family: 'Noto Serif SC', "Hiragino Sans GB", serif; background: var(--light); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
 
-        /* 顶部导航 (模仿模板) */
+        /* 导航栏 */
         nav { background: var(--white); padding: 1rem 1.5rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .nav-logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 4px; color: var(--primary-brown); text-decoration: none; }
-        .nav-links { list-style: none; display: flex; gap: 1.5rem; font-size: 0.9rem; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent-gold); }
-        .book-now-nav { background: var(--accent-gold); color: var(--white) !important; padding: 0.5rem 1rem; border-radius: 4px; }
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 4px; color: var(--primary); text-decoration: none; }
+        .nav-links { list-style: none; display: flex; gap: 1.2rem; font-size: 0.9rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; }
+        .btn-book { background: var(--accent); color: white !important; padding: 0.5rem 1rem; border-radius: 4px; transition: 0.3s; }
+        .btn-book:hover { background: var(--primary); }
 
-        /* Banner区 (使用新图 客厅19) */
-        .hero { height: 75vh; background: url('image_19.png') center/cover no-repeat; display: flex; align-items: center; justify-content: center; position: relative; }
-        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); }
-        .hero-text { position: relative; z-index: 1; text-align: center; color: var(--white); width: 90%; }
-        .hero-text h1 { font-size: 2.5rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        /* 巨幕 Banner - 使用 客厅1.jpg */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('客厅1.jpg') center/cover no-repeat; 
+            display: flex; align-items: center; justify-content: center; color: white; text-align: center;
+        }
+        .hero-text h1 { font-size: 3rem; letter-spacing: 8px; margin-bottom: 10px; }
+        .hero-text p { font-size: 1.2rem; letter-spacing: 2px; }
 
-        /* 核心板块基础样式 */
-        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem; }
-        .section-title { text-align: center; margin-bottom: 2.5rem; color: var(--primary-brown); font-size: 1.6rem; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); }
-        .section-title::after { content: ''; width: 40px; height: 2px; background: var(--accent-gold); position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 1.8rem; color: var(--primary); margin-bottom: 10px; }
+        .section-title .line { width: 50px; height: 2px; background: var(--accent); margin: 0 auto; }
 
-        /* 1. 关于我们 (使用玄关图) */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
-        .about-img img { width: 100%; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .about-p { font-size: 0.95rem; color: #555; text-align: justify; }
+        /* 关于我们 - 使用 玄关0.jpg */
+        .about { display: flex; flex-wrap: wrap; gap: 3rem; align-items: center; }
+        .about-img { flex: 1; min-width: 300px; }
+        .about-img img { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .about-content { flex: 1.2; min-width: 300px; }
+        .about-content p { margin-bottom: 1.5rem; color: #555; text-align: justify; }
 
-        /* 2. 精选客房滑块 (模仿模板，利用所有卧室图) */
-        .room-section { background: var(--white); padding: 4rem 1.5rem; margin-top: 3rem; }
-        .room-slider { display: flex; overflow-x: auto; gap: 1rem; padding-bottom: 1rem; scroll-snap-type: x mandatory; }
-        .room-card { flex: 0 0 calc(33.33% - 0.7rem); background: var(--white); border: 1px solid #eee; border-radius: 8px; overflow: hidden; scroll-snap-align: start; }
-        .room-card img { width: 100%; height: 180px; object-fit: cover; }
-        .room-card-info { padding: 1rem; text-align: center; }
-        .room-price { color: var(--accent-gold); font-size: 1.1rem; margin: 0.5rem 0; }
+        /* 特色客房滑动展示 - 使用所有卧室图 */
+        .room-slider { display: flex; overflow-x: auto; gap: 1.5rem; padding: 1rem 0; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+        .room-card { flex: 0 0 320px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); scroll-snap-align: start; }
+        .room-card img { width: 100%; height: 220px; object-fit: cover; }
+        .room-info { padding: 1.5rem; text-align: center; }
+        .room-info h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .price { color: var(--accent); font-weight: bold; font-size: 1.1rem; }
 
-        /* 3. 精彩体验 (利用阳台、细节图) */
-        .experience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem; }
-        .exp-item { text-align: center; position: relative; border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .exp-item img { width: 100%; height: 200px; object-fit: cover; }
-        .exp-text { padding: 1rem; font-size: 0.9rem; font-weight: bold; }
+        /* 精彩体验网格 - 使用 阳台、茶具、洗浴图 */
+        .exp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .exp-item { position: relative; border-radius: 8px; overflow: hidden; height: 250px; }
+        .exp-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .exp-item:hover img { transform: scale(1.1); }
+        .exp-overlay { position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; }
 
-        /* 4. 客户心声 (模仿模板) */
-        .testimonial-slider { display: flex; gap: 1rem; overflow-x: auto; padding: 1rem 0; }
-        .testimonial-item { flex: 0 0 300px; background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid #eee; }
-        .testi-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
-        .testi-avatar { width: 40px; height: 40px; border-radius: 50%; background: #ddd; }
-        .rating { color: var(--accent-gold); margin-bottom: 1rem; }
-        .testi-text { font-size: 0.85rem; color: #666; font-style: italic; }
+        /* 客户评价 */
+        .reviews { display: flex; overflow-x: auto; gap: 1.5rem; margin-top: 2rem; }
+        .review-card { flex: 0 0 300px; background: white; padding: 2rem; border-radius: 8px; border: 1px solid #eee; }
+        .stars { color: var(--accent); margin-bottom: 10px; }
+        .reviewer { font-size: 0.8rem; color: #888; margin-top: 15px; }
 
-        /* 5. 预订入口 & 客服模仿 */
-        .booking-row { display: flex; gap: 1rem; align-items: flex-start; margin-top: 2rem; }
-        .calendar-mimic { flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; background: #fff; text-align: center; font-family: monospace; }
-        .service-mimic { flex: 0 0 250px; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; text-align: center; }
-        .service-mimic button { background: #3e3a36; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; margin-top: 10px; cursor: pointer; }
+        /* 预订与联系 */
+        .booking-box { background: var(--white); padding: 2rem; border-radius: 8px; display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; border: 1px solid #eee; }
+        .contact-info { flex: 1; }
+        .calendar-mimic { flex: 1; background: #fdfcf8; border: 1px dashed var(--accent); padding: 1.5rem; border-radius: 8px; text-align: center; }
+        .btn-contact { display: inline-block; background: var(--dark); color: white; padding: 0.8rem 2rem; text-decoration: none; border-radius: 4px; margin-top: 1rem; }
 
-        /* 页脚 */
-        footer { background: #3e3a36; color: #dcdcdc; padding: 40px 20px; text-align: center; font-size: 0.8rem; margin-top: 3rem; }
-        .footer-logo { font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 1rem; display: block; }
+        footer { background: #3e3a36; color: #bbb; padding: 4rem 1.5rem; text-align: center; font-size: 0.8rem; }
+        footer b { color: white; letter-spacing: 3px; font-size: 1.2rem; display: block; margin-bottom: 1rem; }
+
+        /* 隐藏滚动条 */
+        .room-slider::-webkit-scrollbar, .reviews::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="nav-logo">君子屋</a>
+        <a href="#" class="logo">君子屋</a>
         <ul class="nav-links">
             <li><a href="#about">关于</a></li>
             <li><a href="#rooms">客房</a></li>
-            <li><a href="#experience">体验</a></li>
             <li><a href="#booking">预订</a></li>
-            <li><a href="#" class="book-now-nav">立即预约</a></li>
+            <li><a href="#" class="btn-book">立即预约</a></li>
         </ul>
     </nav>
 
-    <div class="hero">
-        <div class="hero-text animate__animated animate__fadeInUp">
+    <header class="hero">
+        <div class="hero-text animate__animated animate__fadeIn">
             <h1>和风雅致 · 舒心之所</h1>
-            <p>隐于市，寓于禅，乐享和风生活</p>
+            <p>隐于市，寓于禅，开启您的古都之旅</p>
         </div>
-    </div>
+    </header>
 
     <div class="container" id="about">
-        <h2 class="section-title">体验古都风韵</h2>
-        <div class="about-grid">
-            <div class="about-img animate__animated animate__fadeInLeft">
-                <img src="玄关0.jpg" alt="民宿玄关">
+        <div class="section-title">
+            <h2>体验古都风韵</h2>
+            <div class="line"></div>
+        </div>
+        <div class="about">
+            <div class="about-img">
+                <img src="玄关0.jpg" alt="君子屋玄关">
             </div>
-            <div class="about-p animate__animated animate__fadeInRight">
-                <p>“君子屋”致力于将现代舒适与传统和风完美融合。我们诚挚欢迎每一位寻找静谧与和风雅致的旅人。在这里，您不仅可以感受到塌塌米的芬芳，更能享受到全心全意的日式款待。</p>
-                <p style="margin-top: 10px;">从精心挑选的布草到每一个角落的细节，都承载着我们对“君子之礼”的坚持。</p>
+            <div class="about-content">
+                <p>“君子屋”民宿坐落于历史悠久的城市核心地带，我们秉持“君子以厚德载物”的待客之道，为您打造一个融合日式传统审美与现代生活便利的温馨港湾。</p>
+                <p>从推开玄关的那一刻起，原木的香气与精致的和风装潢将带您远离尘嚣。无论是家庭旅行还是独自修行，这里都是您理想的归宿。</p>
+                <img src="客厅2.jpg" style="width: 100%; border-radius: 8px; margin-top: 1rem;">
             </div>
         </div>
     </div>
 
-    <div class="room-section" id="rooms">
-        <div class="container" style="padding: 0;">
-            <h2 class="section-title">雅致格调·特色客房</h2>
+    <div class="container" id="rooms" style="background: #fff; max-width: 100%;">
+        <div class="container">
+            <div class="section-title">
+                <h2>精选客房</h2>
+                <div class="line"></div>
+            </div>
             <div class="room-slider">
                 <div class="room-card">
-                    <img src="2楼洋室红0.jpg" alt="经典洋室红">
-                    <div class="room-card-info">
-                        <h3>经典洋室 · 红</h3>
-                        <p class="room-price">每晚 ¥18,000 起</p>
-                        <p style="font-size: 0.8rem; color: #777;">双床 25㎡ 花园景观</p>
+                    <img src="2楼洋室红0.jpg">
+                    <div class="room-info">
+                        <h3>经典和风洋室</h3>
+                        <p class="price">¥18,000 /晚起</p>
                     </div>
                 </div>
                 <div class="room-card">
-                    <img src="image_17.png" alt="柔光双床">
-                    <div class="room-card-info">
-                        <h3>柔光双床 · 眠</h3>
-                        <p class="room-price">每晚 ¥19,500 起</p>
-                        <p style="font-size: 0.8rem; color: #777;">大床 28㎡ 独立卫浴</p>
+                    <img src="2楼洋室灰3.jpg">
+                    <div class="room-info">
+                        <h3>高级灰度双床房</h3>
+                        <p class="price">¥19,500 /晚起</p>
                     </div>
                 </div>
                 <div class="room-card">
-                    <img src="和室2.jpg" alt="禅意和室">
-                    <div class="room-card-info">
-                        <h3>禅意和室 · 乐</h3>
-                        <p class="room-price">每晚 ¥22,000 起</p>
-                        <p style="font-size: 0.8rem; color: #777;">塌塌米 30㎡ 传统卷轴</p>
+                    <img src="和室4.jpg">
+                    <div class="room-info">
+                        <h3>禅意榻榻米大房</h3>
+                        <p class="price">¥22,000 /晚起</p>
                     </div>
                 </div>
                 <div class="room-card">
-                    <img src="image_20.png" alt="斜顶卧室">
-                    <div class="room-card-info">
-                        <h3>斜顶卧室 · 逸</h3>
-                        <p class="room-price">每晚 ¥16,800 起</p>
-                        <p style="font-size: 0.8rem; color: #777;">大床 22㎡ 采光极佳</p>
+                    <img src="3楼洋室2.jpg">
+                    <div class="room-info">
+                        <h3>顶层景观阁楼</h3>
+                        <p class="price">¥17,000 /晚起</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container" id="experience">
-        <h2 class="section-title">精彩活动与体验</h2>
-        <div class="experience-grid">
+    <div class="container">
+        <div class="section-title">
+            <h2>精彩活动与体验</h2>
+            <div class="line"></div>
+        </div>
+        <div class="exp-grid">
             <div class="exp-item">
-                <img src="image_24.png" alt="茶具细节">
-                <div class="exp-text">传统茶道体验</div>
+                <img src="image_e483a5.jpg">
+                <div class="exp-overlay"><h3>传统茶艺体验</h3></div>
             </div>
             <div class="exp-item">
-                <img src="image_21.png" alt="阳台细节">
-                <div class="exp-text">城市阳台小憩</div>
+                <img src="阳台2.jpg">
+                <div class="exp-overlay"><h3>私享景观阳台</h3></div>
             </div>
             <div class="exp-item">
-                <img src="image_18.png" alt="卫浴细节">
-                <div class="exp-text">和风卫浴时光</div>
+                <img src="洗浴5.jpg">
+                <div class="exp-overlay"><h3>和风净洗时光</h3></div>
             </div>
         </div>
     </div>
 
-    <div style="background: #fdfcf8; padding: 4rem 1.5rem;">
+    <div class="container" style="background: #ece9e2; max-width: 100%;">
         <div class="container">
-            <h2 class="section-title">君子之言·客户心声</h2>
-            <div class="testimonial-slider">
-                <div class="testimonial-item">
-                    <div class="testi-header">
-                        <div class="testi-avatar" style="background: url('玄关0.jpg') center/cover;"></div>
-                        <div><b>张先生</b><br><small>2026.02入住</small></div>
-                    </div>
-                    <div class="rating">★★★★★ 5.0</div>
-                    <p class="testi-text">"位置极佳，就在清水寺附近，但非常安静。老板的服务非常周到，和风装饰让人感觉非常有仪式感。"</p>
+            <div class="section-title">
+                <h2>客人声音</h2>
+                <div class="line"></div>
+            </div>
+            <div class="reviews">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"民宿的细节做得太棒了，尤其是那套茶具。阳台的视野也非常好，晚上一边喝茶一边看景非常惬意。"</p>
+                    <p class="reviewer">— 王女士, 2026年2月入住</p>
                 </div>
-                <div class="testimonial-item">
-                    <div class="testi-header">
-                        <div class="testi-avatar"></div>
-                        <div><b>佐藤女士</b><br><small>2026.01入住</small></div>
-                    </div>
-                    <div class="rating">★★★★★ 5.0</div>
-                    <p class="testi-text">"塌塌米房间太香了，茶具也很精致。晚上在阳台看夜景非常享受。强烈推荐。"</p>
-                </div>
-                <div class="testimonial-item">
-                    <div class="testi-header">
-                        <div class="testi-avatar"></div>
-                        <div><b>Li</b><br><small>2025.12入住</small></div>
-                    </div>
-                    <div class="rating">★★★★☆ 4.9</div>
-                    <p class="testi-text">"非常干净。我们两家人住，空间足够。下次来还会选择这里。"</p>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"非常干净，床铺很舒适。位置极其便利，房东提供的导览手册对我们帮助很大。"</p>
+                    <p class="reviewer">— 李先生, 2026年3月入住</p>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container" id="booking">
-        <h2 class="section-title">便捷位置与预订</h2>
-        <div class="booking-row">
+        <div class="section-title">
+            <h2>预订与咨询</h2>
+            <div class="line"></div>
+        </div>
+        <div class="booking-box">
+            <div class="contact-info">
+                <h3>联系我们</h3>
+                <p style="margin-top: 1rem;">如果您有任何疑问，请随时通过以下方式联系：</p>
+                <p style="margin: 10px 0;"><b>微信:</b> junziwu_jp</p>
+                <p><b>电话:</b> +81 80-XXXX-XXXX</p>
+                <a href="#" class="btn-contact" onclick="alert('即将跳转至微信/客服窗口')">在线即时咨询</a>
+            </div>
             <div class="calendar-mimic">
-                <h3>预订日历 (模拟)</h3>
-                <p style="margin-top: 10px; font-size: 1.2rem; color: #999; letter-spacing: 2px;">
-                    【 2 0 2 6 年 3 月 】<br>
-                    -------------------<br>
-                    3/23 ✅ 3/24 ✅ 3/25 🟡<br>
-                    3/26 🚫 3/27 ✅ 3/28 ✅<br>
+                <p><b>实时空房状态</b></p>
+                <p style="font-family: monospace; margin-top: 10px;">
+                    [ 3月24日 - 3月31日 ]<br>
+                    24: 🈵 | 25: 🈵 | 26: 🈵<br>
+                    27: ✅ | 28: ✅ | 29: 🈵<br>
+                    30: ✅ | 31: ✅
                 </p>
-                <small style="color: #777;">(请登录 booking.com 查看实时日历)</small>
+                <small style="color: #999;">请在预订平台确认最终库存</small>
             </div>
-            <div class="service-mimic">
-                <h3>联系方式</h3>
-                <p style="margin-top: 10px; font-size: 0.9rem;">
-                    WeChat: junziwu_jp<br>
-                    WhatsApp: +81 80-XXXX-XXXX<br>
-                </p>
-                <button onclick="alert('即将跳转至咨询页面或WeChat对话框')">在线咨询</button>
-            </div>
+        </div>
+        <div style="margin-top: 2rem; text-align: center;">
+            <img src="细节9.jpg" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px;">
         </div>
     </div>
 
     <footer>
-        <span class="footer-logo">君子屋</span>
+        <b>君子屋</b>
         <p>日本大阪府某某区某某街区（特区民宿认证）</p>
-        <p style="margin-top: 5px;">Email: info@junziwu-minshuku.com</p>
-        <p style="margin-top: 15px; font-size: 0.7rem;">© 2026 君子屋民宿 Junziwu Minshuku. All Rights Reserved.</p>
+        <p>Email: info@junziwu.jp | Tel: +81 06-XXXX-XXXX</p>
+        <p style="margin-top: 2rem; opacity: 0.6;">© 2026 君子屋民宿 Junziwu Minshuku. All Rights Reserved.</p>
     </footer>
 
 </body>
