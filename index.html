@@ -3,76 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KUNSHIYA 君子屋 | 隐于市，寓于禅</title>
+    <title>KUNSHIYA 君子屋 | 隐于市，寓于禅 - 高奢门户</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        :root { --primary: #8c7355; --accent: #d4a373; --dark: #1a1a1a; --light: #fdfcf8; --white: #ffffff; }
+        :root {
+            --primary: #8c7355; 
+            --accent: #d4a373;  
+            --dark: #1a1a1a;
+            --bg-body: #fdfcf8; /* 陶色 */
+            --bg-dark-section: #ece9e2; /* 深陶色 */
+            --white: #ffffff;
+            --text-dark: #3e3a36;
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Noto Serif SC', serif; background: var(--light); color: var(--dark); line-height: 1.6; }
+        body { font-family: 'Noto Serif SC', 'PingFang SC', serif; background: var(--bg-body); color: var(--text-dark); line-height: 1.8; overflow-x: hidden; }
 
-        /* 导航 */
-        nav { background: rgba(255,255,255,0.95); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(5px); }
-        .logo-box { text-decoration: none; text-align: center; }
-        .logo-main { font-size: 1.4rem; font-weight: bold; letter-spacing: 5px; color: var(--primary); display: block; }
-        .logo-sub { font-size: 0.6rem; color: #999; letter-spacing: 2px; }
-        .nav-links { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-size: 0.9rem; }
-        .btn-book { background: var(--primary); color: white !important; padding: 0.5rem 1.2rem; border-radius: 2px; }
+        /* 顶部导航 - 参照模板，白色背景、精致边框 */
+        nav { background: var(--white); padding: 1.2rem 2rem; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 20px rgba(0,0,0,0.03); border-bottom: 1px solid #eee; }
+        .logo-box { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
+        .logo-main { font-size: 1.8rem; font-weight: bold; letter-spacing: 7px; color: var(--primary); }
+        .logo-sub { font-size: 0.7rem; color: #999; letter-spacing: 3px; }
+        .nav-links { list-style: none; display: flex; gap: 2.2rem; font-size: 0.9rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; }
+        .btn-book-nav { background: var(--primary); color: white !important; padding: 0.6rem 1.8rem; border-radius: 2px; }
 
-        /* 巨幕 */
-        .hero { height: 85vh; background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('客厅1.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; color: white; }
-        .hero-text { text-align: center; }
-        .hero-text h1 { font-size: 3.5rem; letter-spacing: 15px; margin-bottom: 10px; font-weight: 500; }
+        /* 沉浸式巨幕 Banner - 参照模板，文字精致对齐 */
+        .hero { 
+            height: 90vh; 
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('客厅1.jpg') center/cover no-repeat; 
+            display: flex; align-items: center; justify-content: center; color: white; text-align: center;
+        }
+        .hero-text { text-shadow: 0 2px 15px rgba(0,0,0,0.5); }
+        .hero-text h1 { font-size: 4rem; letter-spacing: 15px; margin-bottom: 10px; font-weight: 500; }
+        .hero-text p { font-size: 1.2rem; letter-spacing: 5px; opacity: 0.9; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 6rem 1.5rem; }
+        .section-title { text-align: center; margin-bottom: 5rem; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; font-weight: 400; letter-spacing: 5px; }
+        .section-title .line { width: 45px; height: 1px; background: var(--accent); margin: 0 auto; }
+
+        /* 关于君子屋板块 - 参照模板，大图大字对齐 */
+        .brand-section { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; }
+        .brand-text { border-left: 1px solid var(--accent); padding-left: 35px; }
+        .brand-text h3 { font-size: 1.8rem; margin-bottom: 25px; color: var(--primary); letter-spacing: 3px; font-weight: normal; }
+        .brand-text p { font-size: 1rem; color: #666; margin-bottom: 1.5rem; text-align: justify; }
+        .brand-img img { width: 100%; border-radius: 2px; box-shadow: 20px 20px 0px rgba(140, 115, 85, 0.03); }
+
+        /* 特色客房滑动展示 - 增加 UI 卡片精致感 */
+        .room-scroll { display: flex; overflow-x: auto; gap: 2.5rem; padding: 2.5rem 0; scrollbar-width: none; scroll-snap-type: x mandatory; }
+        .room-card { flex: 0 0 380px; background: white; border-radius: 4px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.05); transition: 0.5s; scroll-snap-align: start; cursor: pointer; border: 1px solid #f8f8f8; }
+        .room-card:hover { transform: translateY(-10px); }
+        .room-card img { width: 100%; height: 260px; object-fit: cover; }
+        .room-info { padding: 2.5rem; text-align: center; }
+        .room-info h4 { font-size: 1.4rem; margin-bottom: 15px; letter-spacing: 3px; }
+        .room-info .price { color: var(--accent); font-size: 1.2rem; font-weight: 600; }
+
+        /* 精彩体验全图墙 - 参照模板，瀑布流排版 */
+        .exp-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .photo-item { position: relative; overflow: hidden; height: 280px; }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .photo-item:hover img { transform: scale(1.08); }
+        .photo-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.25); }
+        .photo-content { position: absolute; bottom: 25px; left: 25px; color: white; }
+        .photo-content h4 { font-size: 1.3rem; letter-spacing: 2px; }
+
+        /* 万象细节深色板块 - 参照模板的深灰背景 */
+        .detail-section { background: var(--bg-dark-section); max-width: 100%; }
+        .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+        .detail-item { height: 180px; overflow: hidden; border-radius: 2px; border: 1px solid rgba(212, 163, 115, 0.1); }
+        .detail-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 预约系统与模拟日历 */
+        .booking-system { background: white; padding: 4rem; border-radius: 4px; box-shadow: 0 30px 60px rgba(0,0,0,0.04); }
+        .cal-wrapper { display: grid; grid-template-columns: 1.3fr 1fr; gap: 4rem; margin-top: 3rem; }
+        .calendar-box { border: 1px solid #eee; padding: 25px; border-radius: 8px; }
+        .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+        .day { padding: 14px 0; font-size: 0.95rem; cursor: pointer; border-radius: 4px; transition: 0.2s; }
+        .day.selected { background: var(--primary) !important; color: white !important; }
+        .day.booked { color: #ccc; text-decoration: line-through; pointer-events: none; }
+        .day.label { font-size: 0.8rem; color: #888; border-bottom: 1px solid #eee; }
         
-        .container { max-width: 1200px; margin: 0 auto; padding: 5rem 1.5rem; }
-        .section-title { text-align: center; margin-bottom: 4rem; }
-        .section-title h2 { font-size: 2rem; color: var(--primary); letter-spacing: 5px; margin-bottom: 10px; }
-        .section-title .line { width: 40px; height: 1px; background: var(--accent); margin: 0 auto; }
+        .form-area h3 { color: var(--primary); margin-bottom: 25px; letter-spacing: 2px; }
+        .form-area input, .form-area select { width: 100%; padding: 14px; border: 1px solid #eee; margin-bottom: 20px; outline: none; border-radius: 2px; }
+        .confirm-btn { width: 100%; background: var(--dark); color: white; padding: 18px; border: none; cursor: pointer; letter-spacing: 6px; }
 
-        /* 品牌故事块 */
-        .about-row { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 4rem; }
-        .about-text { border-left: 1px solid var(--accent); padding-left: 30px; }
-        .about-img img { width: 100%; border-radius: 2px; box-shadow: 10px 10px 30px rgba(0,0,0,0.05); }
+        /* 页脚板块 - 参照模板的石墨黑深色 */
+        footer { background: #111; color: #888; padding: 6rem 2rem; text-align: center; line-height: 2.2; }
+        .footer-brand { color: white; font-size: 2rem; letter-spacing: 12px; margin-bottom: 1.5rem; display: block; font-weight: bold; }
+        .footer-co { color: #aaa; font-size: 1.1rem; margin-bottom: 2.5rem; }
+        .footer-info { font-size: 0.9rem; margin-bottom: 5px; }
+        .footer-info b { color: #bbb; margin-right: 12px; font-weight: normal; }
 
-        /* 全图片展示墙 - 瀑布流感 */
-        .photo-wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
-        .photo-item { position: relative; overflow: hidden; height: 250px; background: #eee; }
-        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .photo-item:hover img { transform: scale(1.05); }
-        .photo-tag { position: absolute; bottom: 10px; left: 10px; background: rgba(255,255,255,0.8); padding: 2px 10px; font-size: 0.7rem; color: var(--primary); }
-
-        /* 预约板块 */
-        .booking-card { background: var(--white); display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; padding: 3rem; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
-        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; margin-top: 20px; }
-        .day { padding: 10px 0; font-size: 0.8rem; cursor: pointer; border-radius: 2px; }
-        .day:hover { background: var(--light); }
-        .day.sel { background: var(--primary) !important; color: white !important; }
-        .day.off { color: #ccc; text-decoration: line-through; pointer-events: none; }
-        
-        .form-box input, .form-box select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #eee; outline: none; }
-        .btn-send { width: 100%; background: var(--dark); color: white; padding: 15px; border: none; cursor: pointer; letter-spacing: 5px; }
-
-        /* 页脚 */
-        footer { background: #111; color: #777; padding: 5rem 2rem; text-align: center; }
-        .f-logo { color: white; font-size: 1.8rem; letter-spacing: 10px; margin-bottom: 1rem; display: block; }
-        .f-info { margin-bottom: 5px; font-size: 0.85rem; }
-        .f-info b { color: #aaa; font-weight: normal; margin-right: 8px; }
-
-        @media (max-width: 768px) { .about-row, .booking-card { grid-template-columns: 1fr; } .hero-text h1 { font-size: 2.5rem; } }
+        @media (max-width: 768px) { .brand-section, .cal-wrapper { grid-template-columns: 1fr; gap: 2rem; } .hero-text h1 { font-size: 2.8rem; } }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="#" class="logo-box">
+    <a href="#" class="logo-box animate__animated animate__fadeIn">
         <span class="logo-main">君子屋</span>
         <span class="logo-sub">KUNSHIYA</span>
     </a>
     <ul class="nav-links">
         <li><a href="#about">品牌</a></li>
         <li><a href="#gallery">赏析</a></li>
-        <li><a href="#booking" class="btn-book">立即预约</a></li>
+        <li><a href="#booking" class="btn-book-nav">立即预约</a></li>
     </ul>
 </nav>
 
@@ -80,94 +117,115 @@
     <div class="hero-text animate__animated animate__fadeIn">
         <p>— 有道株式会社 —</p>
         <h1>KUNSHIYA 君子屋</h1>
-        <p>神户 · 大阪 · 精致旅居</p>
+        <p>隐于市 · 寓于禅</p>
     </div>
 </header>
 
 <div class="container" id="about">
-    <div class="about-row">
-        <div class="about-img animate__animated animate__fadeInLeft">
-            <img src="玄关0.jpg" alt="玄关">
+    <div class="brand-section">
+        <div class="brand-img animate__animated animate__fadeInLeft">
+            <img src="玄关0.jpg" alt="KUNSHIYA玄关">
         </div>
-        <div class="about-text">
+        <div class="brand-text animate__animated animate__fadeInRight">
             <div class="section-title" style="text-align:left; margin-bottom:20px;">
-                <h2 style="font-size:1.5rem;">君子之礼，和风之美</h2>
+                <h2 style="font-size:2rem; letter-spacing:3px;">和风雅致 · 舒心之所</h2>
                 <div class="line" style="margin:0;"></div>
             </div>
-            <p>“君子屋（KUNSHIYA）”秉承东方禅意美学，将现代居住的便捷与传统和室的韵味完美融合。作为有道株式会社旗下的高端民宿品牌，我们不仅提供一晚住宿，更是在传递一种“自强不息、厚德载物”的居所文化。</p>
-            <p style="font-size: 0.85rem; color: #999;">神户市兵库区会下山町1-6-20</p>
+            <h3>君子之礼，厚德载物</h3>
+            <p>“君子屋（KUNSHIYA）”不仅是一家民宿，更是一种对雅致生活的礼赞。我们坚持将东方审美落实到旅居的每一处角落。通过原木的香气与精致陈设，将和风体验做到了极致。</p>
+            <p style="font-size: 0.8rem; color: #999; margin-top: 10px;">地址: 神户市兵库区会下山町1-6-20</p>
         </div>
-    </div>
-
-    <div class="photo-wall" id="gallery">
-        <div class="photo-item"><img src="客厅2.jpg"><div class="photo-tag">雅致客厅</div></div>
-        <div class="photo-item"><img src="2楼洋室红0.jpg"><div class="photo-tag">红 · 经典洋室</div></div>
-        <div class="photo-item"><img src="2楼洋室灰3.jpg"><div class="photo-tag">灰 · 现代和风</div></div>
-        <div class="photo-item"><img src="和室4.jpg"><div class="photo-tag">禅 · 塌塌米</div></div>
-        <div class="photo-item"><img src="3楼洋室2.jpg"><div class="photo-tag">逸 · 景观阁楼</div></div>
-        <div class="photo-item"><img src="客厅4.jpg"><div class="photo-tag">共享空间</div></div>
     </div>
 </div>
 
-<div class="container" style="background: #f4f2ee; max-width: 100%;">
+<div class="container" id="gallery" style="max-width: 100%; background: #fff; border-top: 1px solid #f5f3ee; border-bottom: 1px solid #f5f3ee;">
     <div class="container">
         <div class="section-title">
-            <h2>万象细节</h2>
+            <h2>精选客房赏析</h2>
             <div class="line"></div>
         </div>
-        <div class="photo-wall">
-            <div class="photo-item"><img src="image_e483a5.jpg"><div class="photo-tag">茶道</div></div>
-            <div class="photo-item"><img src="细节9.jpg"><div class="photo-tag">端景</div></div>
-            <div class="photo-item"><img src="阳台2.jpg"><div class="photo-tag">露台</div></div>
-            <div class="photo-item"><img src="洗浴5.jpg"><div class="photo-tag">卫浴</div></div>
-            <div class="photo-item"><img src="细节7.jpg"><div class="photo-tag">器物</div></div>
-            <div class="photo-item"><img src="4.jpg"><div class="photo-tag">光影</div></div>
-            <div class="photo-item"><img src="3.jpg"><div class="photo-tag">一隅</div></div>
-            <div class="photo-item"><img src="7.jpg"><div class="photo-tag">软装</div></div>
-            <div class="photo-item"><img src="1-copy-0.jpg"><div class="photo-tag">餐厅</div></div>
-            <div class="photo-item"><img src="客餐厅1.jpg"><div class="photo-tag">全景</div></div>
+        <div class="room-scroll">
+            <div class="room-card" onclick="location.hash='#booking'"><img src="2楼洋室红0.jpg"><div class="room-info"><h4>红 · 经典洋室</h4><p class="price">¥18,000 / night</p></div></div>
+            <div class="room-card" onclick="location.hash='#booking'"><img src="2楼洋室灰3.jpg"><div class="room-info"><h4>灰 · 现代和风</h4><p class="price">¥19,500 / night</p></div></div>
+            <div class="room-card" onclick="location.hash='#booking'"><img src="和室4.jpg"><div class="room-info"><h4>禅 · 塌塌米和室</h4><p class="price">¥22,000 / night</p></div></div>
+            <div class="room-card" onclick="location.hash='#booking'"><img src="3楼洋室2.jpg"><div class="room-info"><h4>逸 · 景观阁楼</h4><p class="price">¥17,000 / night</p></div></div>
         </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="section-title">
+        <h2>精彩体验</h2>
+        <div class="line"></div>
+    </div>
+    <div class="exp-wall">
+        <div class="photo-item"><img src="image_e483a5.jpg"><div class="photo-overlay"></div><div class="photo-content"><h4>传统茶道体验</h4></div></div>
+        <div class="photo-item"><img src="阳台2.jpg"><div class="photo-overlay"></div><div class="photo-content"><h4>私享阳台时光</h4></div></div>
+        <div class="photo-item"><img src="洗浴5.jpg"><div class="photo-overlay"></div><div class="photo-content"><h4>和风净洗时光</h4></div></div>
+    </div>
+</div>
+
+<div class="container detail-section">
+    <div class="section-title">
+        <h2>万象细节</h2>
+        <div class="line"></div>
+    </div>
+    <div class="detail-grid">
+        <div class="detail-item"><img src="客厅2.jpg"></div>
+        <div class="detail-item"><img src="细节9.jpg"></div>
+        <div class="detail-item"><img src="细节7.jpg"></div>
+        <div class="detail-item"><img src="3.jpg"></div>
+        <div class="detail-item"><img src="7.jpg"></div>
+        <div class="detail-item"><img src="客餐厅1.jpg"></div>
+        <div class="detail-item"><img src="1-copy-0.jpg"></div>
+        <div class="detail-item"><img src="4.jpg"></div>
     </div>
 </div>
 
 <div class="container" id="booking">
-    <div class="booking-card">
-        <div class="cal-box">
-            <h3 style="color:var(--primary);">2026年 3月</h3>
-            <div class="cal-grid">
-                <div class="day" style="color:#999">日</div><div class="day" style="color:#999">一</div><div class="day" style="color:#999">二</div><div class="day" style="color:#999">三</div><div class="day" style="color:#999">四</div><div class="day" style="color:#999">五</div><div class="day" style="color:#999">六</div>
-                <div class="day off">26</div><div class="day off">27</div><div class="day off">28</div><div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div>
-                <div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div>
-                <div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div>
-                <div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day" onclick="s(this)">24</div><div class="day" onclick="s(this)">25</div>
-                <div class="day" onclick="s(this)">26</div><div class="day" onclick="s(this)">27</div><div class="day" onclick="s(this)">28</div><div class="day" onclick="s(this)">29</div><div class="day off">30</div><div class="day off">31</div>
+    <div class="section-title">
+        <h2>在线咨询预订</h2>
+        <div class="line"></div>
+    </div>
+    <div class="booking-system">
+        <div class="cal-wrapper">
+            <div class="calendar-box">
+                <div style="text-align:center; margin-bottom:20px; color:var(--primary); font-weight:500;">2026年 3月</div>
+                <div class="days-grid">
+                    <div class="day label">日</div><div class="day label">一</div><div class="day label">二</div><div class="day label">三</div><div class="day label">四</div><div class="day label">五</div><div class="day label">六</div>
+                    <div class="day" style="color:#ddd">26</div><div class="day" style="color:#ddd">27</div><div class="day" style="color:#ddd">28</div><div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div>
+                    <div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div>
+                    <div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div>
+                    <div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day" onclick="s(this)">24</div><div class="day" onclick="s(this)">25</div>
+                    <div class="day" onclick="s(this)">26</div><div class="day" onclick="s(this)">27</div><div class="day" onclick="s(this)">28</div><div class="day" onclick="s(this)">29</div><div class="day booked">30</div><div class="day booked">31</div>
+                </div>
+                <small style="color:#999; margin-top:15px; display:block;">* 划线日期不可咨询，点击可选日期。我们将尽快通过 Hotmail 联系您。</small>
             </div>
-            <p style="font-size:0.7rem; color:#999; margin-top:10px;">* 划线日期已被占用，点击可选日期咨询</p>
-        </div>
-        <div class="form-box">
-            <h3>预约咨询</h3>
-            <input type="text" id="dp" placeholder="点击左侧日历选择日期" readonly>
-            <select><option>选择您喜欢的房型</option><option>红 · 经典洋室</option><option>灰 · 现代和风</option><option>禅 · 塌塌米和室</option></select>
-            <input type="number" placeholder="入住人数" min="1" value="2">
-            <button class="btn-send" onclick="alert('咨询已发送！我们将通过Hotmail联系您。')">发送预订申请</button>
+            <div class="form-area">
+                <h3>意向登记</h3>
+                <input type="text" id="date-pick" placeholder="点击日历选择入住日期" readonly>
+                <select><option>选择您喜欢的房型</option><option>红·经典洋室</option><option>灰·现代和风</option><option>禅·榻榻米和室</option></select>
+                <input type="number" placeholder="入住人数" min="1" value="2">
+                <button class="confirm-btn" onclick="alert('咨询已发送！客服将尽快联系您。')">确认咨询</button>
+            </div>
         </div>
     </div>
 </div>
 
 <footer>
-    <span class="f-logo">KUNSHIYA</span>
-    <div style="color:#ccc; margin-bottom:2rem;">有道株式会社</div>
-    <div class="f-info"><b>地址</b>神户市兵库区会下山町1-6-20</div>
-    <div class="f-info"><b>电话</b>090-3949-3951</div>
-    <div class="f-info"><b>邮箱</b>wangxiaojun555@hotmail.com</div>
-    <div style="margin-top:4rem; opacity:0.2; font-size:0.6rem;">© 2026 KUNSHIYA / YOUDAO CO., LTD.</div>
+    <span class="footer-brand">KUNSHIYA</span>
+    <div class="footer-co">YOUDAO CO., LTD.</div>
+    <div class="footer-info"><b>地址</b>神户市兵库区会下山町1-6-20</div>
+    <div class="footer-info"><b>电话</b>090-3949-3951</div>
+    <div class="footer-info"><b>邮箱</b>wangxiaojun555@hotmail.com</div>
+    <p style="margin-top: 5rem; opacity: 0.2; font-size: 0.6rem;">© 2026 KUNSHIYA. ALL RIGHTS RESERVED.</p>
 </footer>
 
 <script>
     function s(e) {
-        document.querySelectorAll('.day').forEach(d=>d.classList.remove('sel'));
-        e.classList.add('sel');
-        document.getElementById('dp').value = "预约日期：3月" + e.innerText + "日";
+        document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+        e.classList.add('selected');
+        document.getElementById('date-pick').value = "预约日期：3月" + e.innerText + "日";
     }
 </script>
 
